@@ -1,0 +1,40 @@
+/* Make the ul horizontally scrollable */
+.treeview ul.list-group {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 10px;
+    /* Add some space for the scrollbar */
+}
+
+/* Adjust list items to display horizontally */
+.treeview ul.list-group .list-group-item {
+    display: inline-block;
+    width: auto;
+}
+
+.treeview .node-element-tree {
+    background-color: #343A40 !important;
+}
+
+.treeview span.indent {
+    margin-left: 10px;
+    margin-right: 10px
+}
+
+.treeview span.icon {
+    width: 12px;
+    margin-right: 5px
+}
+
+.treeview .node-disabled {
+    color: silver;
+    cursor: not-allowed
+}
+
+/* Text container that appears below the scrollable ul */
+.treeview-description {
+    margin-top: 15px;
+    padding: 10px;
+    /* border-top: 1px solid #eee; */
+}

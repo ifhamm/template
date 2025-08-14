@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chatalize AI - File Manager</title>
+
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="dist/css/adminlte.min.css" />
+    <link rel="stylesheet" href="index.css" />
+
+    <style>
+        .header-search .form-control,
+        .header-search .input-group-text {
+            border-radius: 20px !important;
+            background-color: #f8f9fa;
+        }
+
+        .header-search .avatar-append {
+            padding: 0 8px;
+        }
+
+        .file-actions {
+            white-space: nowrap;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 180px;
+        }
+
+        .chart-text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .legend-color-box {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .bg-doc {
+            background-color: #0d6efd;
+        }
+
+        .bg-img {
+            background-color: #20c997;
+        }
+
+        .bg-media {
+            background-color: #fd7e14;
+        }
+
+        .bg-notes {
+            background-color: #6c757d;
+        }
+    </style>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <ul class="navbar-nav">
+                <!-- <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li> -->
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="btn btn-default"><i class="far fa-file text-primary"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="btn btn-default ml-2"><i class="far fa-image text-warning"></i></a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto w-100">
+                <li class="nav-item w-100">
+                    <form class="header-search">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text border-0"><i class="fas fa-search"></i></span></div>
+                            <input type="search" class="form-control border-0" placeholder="Search...">
+                            <div class="input-group-append">
+                                <span class="input-group-text border-0 avatar-append"><img src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="User Avatar" class="img-circle" width="28"></span>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+
+        <aside class="main-sidebar sidebar-light-primary elevation-1">
+            <a href="#" class="brand-link">
+                <img src="https://placehold.co/40x40/f03e29/FFF?text=C" alt="Logo" class="brand-image img-circle elevation-0">
+                <span class="brand-text font-weight-bold">My AI</span>
+            </a>
+            <div class="sidebar">
+                <div class="p-3">
+                    <a href="#" class="btn btn-light btn-block border shadow-sm"><i class="fas fa-plus mr-2"></i>
+                        Tambah</a>
+                </div>
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <li class="nav-item"><a href="#" class="nav-link active"><i class="nav-icon far fa-hdd"></i>
+                                <p>Semua Berkas</p>
+                            </a></li>
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link"><i class="nav-icon fas fa-users"></i>
+                                <p>Bagikan<i class="right fas fa-angle-left"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item"><a href="#"
+                                        class="nav-link"><i class="far fa-circle nav-icon"></i>
+                                        <p>Dengan anda</p>
+                                    </a></li>
+                                <li class="nav-item"><a href="#" class="nav-link"><i class="far fa-circle nav-icon"></i>
+                                        <p>Dengan lainnya</p>
+                                    </a></li>
+                                <li class="nav-item"><a href="#" class="nav-link"><i class="far fa-circle nav-icon"></i>
+                                        <p>Dengan tautan</p>
+                                    </a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon far fa-trash-alt"></i>
+                                <p>Dihapus</p>
+                            </a></li>
+                        <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon far fa-clock"></i>
+                                <p>Tertunda</p>
+                            </a></li>
+                        <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon fas fa-tag"></i>
+                                <p>Tag</p>
+                            </a></li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <div class="content-wrapper">
+            <section class="content pt-3">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="card card-outline card-secondary">
+                                <div class="card-body p-0">
+                                    <div class="d-flex justify-content-between align-items-center m-3">
+                                        <div>
+                                            <div class="btn-group filter-dropdown">
+                                                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">Dimodifikasi</button>
+                                                <div class="dropdown-menu dropdown-menu-sm p-0 elevation-3">
+                                                    <a class="dropdown-item text-sm" href="#">Hari ini</a>
+                                                    <a class="dropdown-item text-sm" href="#">7 hari terakhir</a>
+                                                    <a class="dropdown-item text-sm" href="#">30 hari terakhir</a>
+                                                    <a class="dropdown-item text-sm" href="#">Tahun ini (2025)</a>
+                                                    <a class="dropdown-item text-sm" href="#">Tahun lalu (2024)</a>
+                                                </div>
+                                            </div>
+                                            <div class="btn-group ml-2 filter-dropdown">
+                                                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">Orang</button>
+                                                <div class="dropdown-menu dropdown-menu-lg p-0 users-dropdown elevation-3">
+                                                    <a class="dropdown-item" href="#">
+                                                        <div class="media">
+                                                            <img src="https://i.pravatar.cc/40?img=1" class="img-size-32 mr-3 img-circle" alt="avatar">
+                                                            <div class="media-body">
+                                                                <p class="text-sm mb-0 font-weight-bold">Najla Noor Faizah</p>
+                                                                <p class="text-xs text-muted mb-0">najla@armsolusi.com</p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <div class="dropdown-divider m-0"></div>
+                                                    <a class="dropdown-item" href="#">
+                                                        <div class="media">
+                                                            <img src="https://i.pravatar.cc/40?img=2" class="img-size-32 mr-3 img-circle" alt="avatar">
+                                                            <div class="media-body"><p class="text-sm mb-0 font-weight-bold">Dropdown option</p><p class="text-xs text-muted mb-0">Dropdown option</p></div>
+                                                        </div>
+                                                    </a>
+                                                    <a class="dropdown-item" href="#">
+                                                        <div class="media">
+                                                            <img src="https://i.pravatar.cc/40?img=3" class="img-size-32 mr-3 img-circle" alt="avatar">
+                                                            <div class="media-body"><p class="text-sm mb-0 font-weight-bold">Dropdown option</p><p class="text-xs text-muted mb-0">Dropdown option</p></div>
+                                                        </div>
+                                                    </a>
+                                                    <a class="dropdown-item" href="#">
+                                                        <div class="media">
+                                                            <img src="https://i.pravatar.cc/40?img=4" class="img-size-32 mr-3 img-circle" alt="avatar">
+                                                            <div class="media-body"><p class="text-sm mb-0 font-weight-bold">Dropdown option</p><p class="text-xs text-muted mb-0">Dropdown option</p></div>
+                                                        </div>
+                                                    </a>
+                                                    <a class="dropdown-item" href="#">
+                                                        <div class="media">
+                                                            <img src="https://i.pravatar.cc/40?img=5" class="img-size-32 mr-3 img-circle" alt="avatar">
+                                                            <div class="media-body"><p class="text-sm mb-0 font-weight-bold">Dropdown option</p><p class="text-xs text-muted mb-0">Dropdown option</p></div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="btn-group" role="group">
+                                                <button id="btnGrid" type="button" class="btn btn-light text-secondary border p-1 px-2 m-0" aria-label="Grid view"><i class="fas fa-th"></i></button>
+                                                <button id="btnList" type="button" class="btn btn-light text-secondary border p-1 px-2 m-0 active" aria-label="List view"><i class="fas fa-list-ul"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="gridView" class="d-none px-3 pb-3">                
+
+                                        <h6 class="text-muted font-weight-bold mb-2">Folder</h6>
+                                        <div class="folder-grid">
+                                            <div class="folder-box">
+                                                <div class="folder-left"><i class="far fa-folder mr-2"></i><span>Folder</span></div>
+                                                <button class="btn btn-tool p-0"><i class="fas fa-ellipsis-h"></i></button>
+                                            </div>
+                                            <div class="folder-box">
+                                                <div class="folder-left"><i class="far fa-folder mr-2"></i><span>Folder</span></div>
+                                                <button class="btn btn-tool p-0"><i class="fas fa-ellipsis-h"></i></button>
+                                            </div>
+                                            <div class="folder-box">
+                                                <div class="folder-left"><i class="far fa-folder mr-2"></i><span>Folder</span></div>
+                                                <button class="btn btn-tool p-0"><i class="fas fa-ellipsis-h"></i></button>
+                                            </div>
+                                            <div class="folder-box">
+                                                <div class="folder-left"><i class="far fa-folder mr-2"></i><span>Folder</span></div>
+                                                <button class="btn btn-tool p-0"><i class="fas fa-ellipsis-h"></i></button>
+                                            </div>
+                                            <div class="folder-box">
+                                                <div class="folder-left"><i class="far fa-folder mr-2"></i><span>Folder</span></div>
+                                                <button class="btn btn-tool p-0"><i class="fas fa-ellipsis-h"></i></button>
+                                            </div>
+                                            <div class="folder-box">
+                                                <div class="folder-left"><i class="far fa-folder mr-2"></i><span>Folder</span></div>
+                                                <button class="btn btn-tool p-0"><i class="fas fa-ellipsis-h"></i></button>
+                                            </div>
+                                        </div>
+
+                                        <h6 class="text-muted font-weight-bold mt-4 mb-2">Files</h6>
+                                        <div class="files-grid">
+                                            <div class="file-card">
+                                                <div class="file-card-header">
+                                                    <div class="file-title"><span class="type-indicator bg-warning"></span><span>Nama File.MP3</span></div>
+                                                    <button class="btn btn-tool p-0"><i class="fas fa-ellipsis-h"></i></button>
+                                                </div>
+                                                <div class="file-card-preview">
+                                                    <img src="https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?w=800&q=60" alt="preview">
+                                                </div>
+                                            </div>
+                                            <div class="file-card">
+                                                <div class="file-card-header">
+                                                    <div class="file-title"><span class="type-indicator bg-success"></span><span>Nama File.IMG</span></div>
+                                                    <button class="btn btn-tool p-0"><i class="fas fa-ellipsis-h"></i></button>
+                                                </div>
+                                                <div class="file-card-preview">
+                                                    <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?w=800&q=60" alt="preview">
+                                                </div>
+                                            </div>
+                                            <div class="file-card">
+                                                <div class="file-card-header">
+                                                    <div class="file-title"><span class="type-indicator bg-primary"></span><span>Nama File.PDF</span></div>
+                                                    <button class="btn btn-tool p-0"><i class="fas fa-ellipsis-h"></i></button>
+                                                </div>
+                                                <div class="file-card-preview">
+                                                    <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=800&q=60" alt="preview">
+                                                </div>
+                                            </div>
+                                            <div class="file-card">
+                                                <div class="file-card-header">
+                                                    <div class="file-title"><span class="type-indicator bg-danger"></span><span>Nama File.MP4</span></div>
+                                                    <button class="btn btn-tool p-0"><i class="fas fa-ellipsis-h"></i></button>
+                                                </div>
+                                                <div class="file-card-preview">
+                                                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=60" alt="preview">
+                                                </div>
+                                            </div>
+                                            <div class="file-card">
+                                                <div class="file-card-header">
+                                                    <div class="file-title"><span class="type-indicator bg-primary"></span><span>Nama File.PDF</span></div>
+                                                    <button class="btn btn-tool p-0"><i class="fas fa-ellipsis-h"></i></button>
+                                                </div>
+                                                <div class="file-card-preview">
+                                                    <img src="https://images.unsplash.com/photo-1544986581-efac024faf62?w=800&q=60" alt="preview">
+                                                </div>
+                                            </div>
+                                            <div class="file-card">
+                                                <div class="file-card-header">
+                                                    <div class="file-title"><span class="type-indicator bg-success"></span><span>Nama File.IMG</span></div>
+                                                    <button class="btn btn-tool p-0"><i class="fas fa-ellipsis-h"></i></button>
+                                                </div>
+                                                <div class="file-card-preview">
+                                                    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800&q=60" alt="preview">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <table id="listView" class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Nama</th>
+                                                <th>Tipe</th>
+                                                <th>Dimodifikasi</th>
+                                                <th>Ukuran</th>
+                                                <th class="actions-column" style="width:140px"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><i class="far fa-file-alt text-muted mr-2"></i> Laporan
+                                                    Pertanggungjawaban</td>
+                                                <td>Dokumen</td>
+                                                <td>13/08/2025</td>
+                                                <td>10 MB</td>
+                                                <td class="text-right">
+                                                    <div class="file-actions">
+                                                        <a href="#"
+                                                            class="btn btn-sm btn-tool"><i class="fas fa-share-alt"></i></a><a
+                                                            href="#"
+                                                            class="btn btn-sm btn-tool"><i class="fas fa-download"></i></a><a
+                                                            href="#"
+                                                            class="btn btn-sm btn-tool"><i class="fas fa-pen"></i></a><a
+                                                            href="#"
+                                                            class="btn btn-sm btn-tool"><i class="far fa-heart"></i></a><a
+                                                            href="#"
+                                                            class="btn btn-sm btn-tool"><i class="fas fa-ellipsis-h"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><i class="far fa-file-pdf text-danger mr-2"></i> File PDF</td>
+                                                <td>Dokumen</td>
+                                                <td>13/08/2025</td>
+                                                <td>5 MB</td>
+                                                <td class="text-right">
+                                                    <div class="file-actions">
+                                                        <a href="#" class="btn btn-sm btn-tool"><i class="fas fa-share-alt"></i></a><a href="#"
+                                                            class="btn btn-sm btn-tool"><i class="fas fa-download"></i></a><a href="#"
+                                                            class="btn btn-sm btn-tool"><i class="fas fa-pen"></i></a><a href="#"
+                                                            class="btn btn-sm btn-tool"><i class="far fa-heart"></i></a><a href="#"
+                                                            class="btn btn-sm btn-tool"><i class="fas fa-ellipsis-h"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="chart-container">
+                                        <canvas id="storageChart"></canvas>
+                                        <div class="chart-text-overlay">45.5/50 GB</div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <div><span class="legend-color-box bg-doc"></span> Document</div>
+                                            <div class="text-muted">15.3 GB</div>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <div><span class="legend-color-box bg-img"></span> Image</div>
+                                            <div class="text-muted">3 GB</div>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <div><span class="legend-color-box bg-media"></span> Media</div>
+                                            <div class="text-muted">3.4 GB</div>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div><span class="legend-color-box bg-notes"></span> Catatan</div>
+                                            <div class="text-muted">250 MB</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title font-weight-bold">Aktivitas</h3>
+                                </div>
+                                <div class="card-body">
+                                    <h6 class="text-muted font-weight-bold">Hari ini</h6>
+                                    <div class="d-flex align-items-start mt-3">
+                                        <i class="fas fa-plus text-success fa-lg mt-1"></i>
+                                        <div class="ml-3 flex-grow-1">Anda menambahkan <strong>file.pdf</strong></div>
+                                        <small class="text-muted">3 menit lalu</small>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex align-items-start mt-3">
+                                        <i class="fas fa-trash text-danger fa-lg mt-1"></i>
+                                        <div class="ml-3 flex-grow-1">Anda menghapus <strong>file.pdf</strong></div>
+                                        <small class="text-muted">5 menit lalu</small>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex align-items-start mt-3">
+                                        <i class="fas fa-pen text-warning fa-lg mt-1"></i>
+                                        <div class="ml-3 flex-grow-1">Anda mengubah <strong>file.pdf</strong> menjadi
+                                            <strong>nama.pdf</strong></div>
+                                        <small class="text-muted">7 menit lalu</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="plugins/chart.js/Chart.min.js"></script>
+    <script src="dist/js/adminlte.min.js"></script>
+    <script>
+        $(function () {
+        // storage chart
+        var storageChartCanvas = $('#storageChart').get(0).getContext('2d');
+        var chartData = {
+            datasets: [{
+                data: [15.3, 3.0, 3.4, 0.25, (50-15.3-3.0-3.4-0.25)],
+                backgroundColor: ['#0d6efd', '#20c997', '#fd7e14', '#6c757d', '#e9ecef'],
+                borderWidth: 0,
+            }]
+        };
+        var chartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            cutoutPercentage: 80,
+            legend: { display: false }, 
+            tooltips: { enabled: false }
+        };
+        new Chart(storageChartCanvas, {
+            type: 'doughnut',
+            data: chartData,
+            options: chartOptions
+        });
+
+        // view toggle
+        $('#btnGrid').on('click', function () {
+            $('#listView').addClass('d-none');
+            $('#gridView').removeClass('d-none');
+            $('#btnGrid').addClass('active');
+            $('#btnList').removeClass('active');
+        });
+        $('#btnList').on('click', function () {
+            $('#gridView').addClass('d-none');
+            $('#listView').removeClass('d-none');
+            $('#btnList').addClass('active');
+            $('#btnGrid').removeClass('active');
+        });
+    })
+    </script>
+</body>
+
+</html>

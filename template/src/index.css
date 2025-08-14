@@ -1,0 +1,104 @@
+/* Load defaults from `<userDir>/node_modules/node-red-contrib-uibuilder/front-end/uib-brand.min.css`
+ * This is optional but reasonably complete and allows for light/dark mode switching.
+ */
+@import url("../uibuilder/uib-brand.min.css");
+
+/* Layout controls for grid view */
+.folder-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 16px;
+}
+
+.folder-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+
+.folder-left {
+  display: inline-flex;
+  align-items: center;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.files-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 16px;
+}
+
+.file-card {
+  background: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  overflow: hidden;
+}
+
+.file-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+}
+
+.file-title {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  color: #6c757d;
+}
+
+.type-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.file-card-preview {
+  width: 100%;
+  height: 180px;
+  background: #f1f3f5;
+}
+
+.file-card-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Filters dropdown visuals */
+
+/* AdminLTE flavored dropdown look */
+.filter-dropdown .dropdown-menu {
+  border-radius: .5rem;
+  border-color: #e9ecef;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+.filter-dropdown .dropdown-item {
+  font-weight: 500;
+  color: #495057;
+}
+
+.users-dropdown .dropdown-item:hover { background-color: #f8f9fa; }
+
+@media (max-width: 1199.98px) {
+  .folder-grid, .files-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 991.98px) {
+  .folder-grid, .files-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 575.98px) {
+  .folder-grid, .files-grid { grid-template-columns: 1fr; }
+}

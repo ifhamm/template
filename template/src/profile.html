@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chatalize AI - User Profile</title>
+
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="dist/css/adminlte.min.css" />
+
+    <style>
+        .content-wrapper { background-color: #f8f9fa !important; }
+        .main-sidebar { background-color: #FFFFFF !important; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .card-section { background-color: #ffffff; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .right-section .card { background-color: #ffffff; border: none; }
+
+        .main-header { border-bottom: none !important; background-color: #f8f9fa !important; }
+        .header-search .form-control,
+        .header-search .input-group-text {
+            border-radius: 20px !important; background-color: #ffffff;
+            border: 1px solid #dee2e6; height: 38px;
+        }
+
+        @media (min-width: 992px) {
+            .nav-link[data-widget="pushmenu"] {
+                display: none !important;
+            }
+        }
+        .sidebar-custom .sidebar-btn {
+            display: flex;
+            justify-content: center; 
+            align-items: center;     
+            width: 100%;
+            background-color: #f8f9fa;
+            font-weight: 500;
+            color: #495057;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .sidebar-custom .sidebar-btn.active {
+            color: #d94452;
+            font-weight: bold;
+        }
+        .sidebar-custom .sidebar-btn:not(.active):hover {
+            background-color: #e9ecef;
+        }
+
+        .chart-container { position: relative; height: 180px; }
+        .chart-text-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+        .chart-text-overlay strong { font-size: 2.2rem; display: block; line-height: 1; }
+        .chart-text-overlay small { font-size: 1rem; color: #6c757d; }
+        .profile-avatar { width: 120px; height: 120px; border-radius: 50%; border: 4px solid #fff; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
+        .detail-item { margin-bottom: 2.5rem; }
+        .detail-item label { font-size: 0.9rem; color: #6c757d; margin-bottom: 0.25rem; }
+        .detail-item .value { font-size: 1.1rem; font-weight: 500; padding-bottom: 0.75rem; border-bottom: 1px solid #dee2e6; display: flex; justify-content: space-between; align-items: center; }
+        .detail-item .value .edit-btn { cursor: pointer; color: #6c757d; background: none; border: none; }
+    </style>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+            <ul class="navbar-nav w-100">
+                 <li class="nav-item w-100">
+                    <form class="header-search px-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text border-0 bg-white"><i class="fas fa-search"></i></span>
+                            </div>
+                            <input type="search" class="form-control border-0" placeholder="Search...">
+                        </div>
+                    </form>
+                </li>
+            </ul>
+             <ul class="navbar-nav">
+                 <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="User Avatar" class="img-circle" width="32">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a href="#" class="dropdown-item">Profil</a><a href="#" class="dropdown-item">Admin Tools</a><a href="#" class="dropdown-item">Pengaturan</a>
+                        <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Keluar</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <aside class="main-sidebar">
+            <a href="#" class="brand-link text-dark" style="border-bottom: none !important;">
+                <img src="https://placehold.co/40x40/d94452/FFF?text=C" alt="Logo" class="brand-image" style="opacity: .8; border-radius: 10px;">
+                <span class="brand-text font-weight-bold">Chatalize AI</span>
+            </a>
+            <div class="sidebar">
+                <div class="sidebar-custom p-3">
+                    <a href="#" class="sidebar-btn mb-2">
+                        <i class="fas fa-plus mr-2"></i> Tambah
+                    </a>
+                    <a href="#" class="sidebar-btn active">
+                        <i class="fas fa-users mr-2"></i> Semua Kontak
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <div class="content-wrapper">
+            <section class="content pt-3">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="card card-section">
+                                <div class="card-body">
+                                    <div class="text-center mb-4"><img src="https://i.pravatar.cc/120?img=33" alt="User Profile" class="profile-avatar"></div>
+                                    <div class="w-75 mx-auto">
+                                        <div class="detail-item"><label>Nama</label><div class="value"><span>Najla Noor Faizah</span><button class="edit-btn" data-toggle="modal" data-target="#modalUbahNama"><i class="fas fa-pencil-alt"></i></button></div></div>
+                                        <div class="detail-item"><label>Email</label><div class="value"><span>najla@armsolusi.com</span><button class="edit-btn" data-toggle="modal" data-target="#modalUbahEmail"><i class="fas fa-pencil-alt"></i></button></div></div>
+                                        <div class="detail-item"><label>No. Telepon</label><div class="value"><span>0821983655332</span><button class="edit-btn" data-toggle="modal" data-target="#modalUbahTelepon"><i class="fas fa-pencil-alt"></i></button></div></div>
+                                        <div class="detail-item"><label>Kata Sandi</label><div class="value"><span>****************</span><button class="edit-btn" data-toggle="modal" data-target="#modalUbahPassword"><i class="fas fa-pencil-alt"></i></button></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 right-section">
+                            <div class="card"><div class="card-body"><div class="chart-container"><canvas id="storageChart"></canvas><div class="chart-text-overlay"><strong>45.5</strong><small>/50 GB</small></div></div><div class="mt-4"><div class="d-flex justify-content-between align-items-center mb-2"><div><span style="display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 8px; vertical-align: middle; background-color: #0d6efd;"></span> Document</div><div class="font-weight-bold">15.3 GB</div></div><div class="d-flex justify-content-between align-items-center mb-2"><div><span style="display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 8px; vertical-align: middle; background-color: #0dcaf0;"></span> Image</div><div class="font-weight-bold">3.0 GB</div></div><div class="d-flex justify-content-between align-items-center mb-2"><div><span style="display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 8px; vertical-align: middle; background-color: #ffc107;"></span> Media</div><div class="font-weight-bold">5.4 GB</div></div><div class="d-flex justify-content-between align-items-center"><div><span style="display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 8px; vertical-align: middle; background-color: #198754;"></span> Catatan</div><div class="font-weight-bold">256 MB</div></div></div></div></div>
+                            <div class="card mt-3"><div class="card-body"><h5 class="font-weight-bold">Aktivitas</h5><p class="text-muted mb-3">Hari ini</p><div class="d-flex align-items-start mt-2"><i class="far fa-check-circle text-info fa-lg mt-1 mr-3"></i><div><p class="mb-0">Anda menambahkan <strong>nama file.pdf</strong></p><small class="text-muted">3 menit yang lalu</small></div></div><div class="d-flex align-items-start mt-3"><i class="far fa-check-circle text-info fa-lg mt-1 mr-3"></i><div><p class="mb-0">Anda menghapus <strong>nama file.pdf</strong></p><small class="text-muted">5 menit yang lalu</small></div></div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalUbahNama" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ubah nama pengguna</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6"><div class="form-group"><label>Nama depan</label><input type="text" class="form-control" placeholder="Masukan nama depan" value="Najla"></div></div>
+                        <div class="col-md-6"><div class="form-group"><label>Naman belakang</label><input type="text" class="form-control" placeholder="Masukan nama belakang" value="Noor Faizah"></div></div>
+                    </div>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button><button type="button" class="btn btn-primary">Ubah</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalUbahEmail" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title">Ubah email</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
+                <div class="modal-body"><div class="form-group"><label>Alamat Email</label><input type="email" class="form-control" placeholder="Masukan email baru" value="najla@armsolusi.com"></div></div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button><button type="button" class="btn btn-primary">Ubah</button></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="modalUbahTelepon" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title">Ubah No. Telepon</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
+                <div class="modal-body"><div class="form-group"><label>Nomor Telepon</label><input type="tel" class="form-control" placeholder="Masukan nomor baru" value="0821983655332"></div></div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button><button type="button" class="btn btn-primary">Ubah</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalUbahPassword" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title">Ubah kata sandi</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
+                <div class="modal-body">
+                    <div class="form-group"><label>Kata Sandi Lama</label><input type="password" class="form-control" placeholder="Masukan kata sandi lama"></div>
+                    <div class="form-group"><label>Kata Sandi Baru</label><input type="password" class="form-control" placeholder="Masukan kata sandi baru"></div>
+                    <div class="form-group"><label>Konfirmasi Kata Sandi Baru</label><input type="password" class="form-control" placeholder="Ketik ulang kata sandi baru"></div>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button><button type="button" class="btn btn-primary">Ubah</button></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="plugins/chart.js/Chart.min.js"></script>
+    <script src="dist/js/adminlte.min.js"></script>
+    <script>
+        $(function () {
+            var storageChartCanvas = $('#storageChart').get(0).getContext('2d');
+            var document_gb = 25.0, image_gb = 10.0, media_gb = 10.0, notes_gb = 0.5;
+            var total_used = document_gb + image_gb + media_gb + notes_gb;
+            var free_space = 50.0 - total_used;
+            new Chart(storageChartCanvas, {
+                type: 'doughnut',
+                data: { datasets: [{ data: [document_gb, image_gb, media_gb, notes_gb, free_space], backgroundColor: ['#0d6efd', '#0dcaf0', '#ffc107', '#198754', '#e9ecef'], borderWidth: 0, }] },
+                options: { maintainAspectRatio: false, responsive: true, cutoutPercentage: 80, legend: { display: false }, tooltips: { enabled: false } }
+            });
+        });
+    </script>
+</body>
+</html>
